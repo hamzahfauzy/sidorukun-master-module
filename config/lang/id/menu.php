@@ -1,7 +1,8 @@
 <?php 
 
 return [
-    'module_name' => 'Master',
+    'module_name' => 'Manajemen Inventory',
+    'master' => 'Master',
     'types' => 'Tipe',
     'sizes' => 'Ukuran',
     'brands' => 'Merk',
