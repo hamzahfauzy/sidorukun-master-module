@@ -112,6 +112,28 @@ return [
             'type'  => 'options-obj:users,id,name',
         ],
     ],
+    'mst_channels' => [
+        'name' => [
+            'label' => 'Nama',
+            'type'  => 'text',
+        ],
+        'created_at' => [
+            'label' => 'Dibuat Pada',
+            'type'  => 'text',
+        ],
+        'created_by' => [
+            'label' => 'Dibuat Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+        'updated_at' => [
+            'label' => 'Diubah Pada',
+            'type'  => 'text',
+        ],
+        'updated_by' => [
+            'label' => 'Diubah Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+    ],
     'mst_suppliers' => [
         'name' => [
             'label' => 'Nama',
@@ -254,4 +276,210 @@ return [
             'type'  => 'options-obj:users,id,name',
         ],
     ],
+    'trn_receives' => [
+        'code' => [
+            'label' => 'No. Terima',
+            'type' => 'text'
+        ],
+        'receive_date' => [
+            'label' => 'Tgl. Terima',
+            'type' => 'datetime-local',
+        ],
+        'supplier_name' => [
+            'label' => 'Supplier',
+            'type' => 'text'
+        ],
+        'total_items' => [
+            'label' => 'Total Item',
+            'type' => 'number'
+        ],
+        'total_qty' => [
+            'label' => 'Qty',
+            'type' => 'number'
+        ],
+        'status' => [
+            'label' => 'Status',
+            'type' => 'options:NEW|APPROVE|CANCEL'
+        ],
+        'created_at' => [
+            'label' => 'Dibuat Pada',
+            'type'  => 'text',
+        ],
+        'created_by' => [
+            'label' => 'Dibuat Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+        'updated_at' => [
+            'label' => 'Diubah Pada',
+            'type'  => 'text',
+        ],
+        'updated_by' => [
+            'label' => 'Diubah Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+    ],
+    'trn_receive_items' => [
+        'receive_id' => [
+            'label' => 'No. Terima',
+            'type' => 'options-obj:trn_receives,id,code'
+        ],
+        'item_id' => [
+            'label' => 'Nama Barang',
+            'type' => 'options-obj:mst_items,id,name'
+        ],
+        'qty' => [
+            'label' => 'QTY',
+            'type' => 'number',
+        ],
+        'unit' => [
+            'label' => 'Satuan',
+            'type' => 'text'
+        ],
+        'created_at' => [
+            'label' => 'Dibuat Pada',
+            'type'  => 'text',
+        ],
+        'created_by' => [
+            'label' => 'Dibuat Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+        'updated_at' => [
+            'label' => 'Diubah Pada',
+            'type'  => 'text',
+        ],
+        'updated_by' => [
+            'label' => 'Diubah Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+    ],
+    'trn_outgoings' => [
+        'code' => [
+            'label' => 'No. Keluar',
+            'type' => 'text'
+        ],
+        'outgoing_date' => [
+            'label' => 'Tgl. Keluar',
+            'type' => 'datetime-local',
+        ],
+        'customer_name' => [
+            'label' => 'Kustomer',
+            'type' => 'text'
+        ],
+        'channel_name' => [
+            'label' => 'Channel',
+            'type' => 'text'
+        ],
+        'order_code' => [
+            'label' => 'No Pesanan',
+            'type' => 'text'
+        ],
+        'receipt_code' => [
+            'label' => 'No Resi',
+            'type' => 'text'
+        ],
+        'outgoing_type' => [
+            'label' => 'Jenis',
+            'type' => 'options:CARGO|INSTANT|HEMAT|REG'
+        ],
+        'total_items' => [
+            'label' => 'Total Item',
+            'type' => 'number'
+        ],
+        'total_qty' => [
+            'label' => 'Qty',
+            'type' => 'number'
+        ],
+        'status' => [
+            'label' => 'Status',
+            'type' => 'options:NEW|APPROVE|CANCEL'
+        ],
+        'created_at' => [
+            'label' => 'Dibuat Pada',
+            'type'  => 'text',
+        ],
+        'created_by' => [
+            'label' => 'Dibuat Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+        'updated_at' => [
+            'label' => 'Diubah Pada',
+            'type'  => 'text',
+        ],
+        'updated_by' => [
+            'label' => 'Diubah Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+    ],
+    'trn_outgoing_items' => [
+        'item_id' => [
+            'label' => 'Nama Barang',
+            'type' => 'options-obj:mst_items,id,name'
+        ],
+        'qty' => [
+            'label' => 'QTY',
+            'type' => 'number',
+        ],
+        'unit' => [
+            'label' => 'Satuan',
+            'type' => 'text'
+        ],
+        'created_at' => [
+            'label' => 'Dibuat Pada',
+            'type'  => 'text',
+        ],
+        'created_by' => [
+            'label' => 'Dibuat Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+        'updated_at' => [
+            'label' => 'Diubah Pada',
+            'type'  => 'text',
+        ],
+        'updated_by' => [
+            'label' => 'Diubah Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+    ],
+    'trn_adjusts' => [
+        'code' => [
+            'label' => 'No. Penyesuaian',
+            'type' => 'text'
+        ],
+        'adjust_date' => [
+            'label' => 'Tgl. Penyesuaian',
+            'type' => 'datetime-local',
+        ],
+        'item_id' => [
+            'label' => 'Nama Barang',
+            'type' => 'options-obj:mst_items,id,name'
+        ],
+        'qty' => [
+            'label' => 'Qty',
+            'type' => 'number'
+        ],
+        'unit' => [
+            'label' => 'Satuan',
+            'type' => 'text'
+        ],
+        'description' => [
+            'label' => 'Deskripsi',
+            'type' => 'textarea'
+        ],
+        'created_at' => [
+            'label' => 'Dibuat Pada',
+            'type'  => 'text',
+        ],
+        'created_by' => [
+            'label' => 'Dibuat Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+        'updated_at' => [
+            'label' => 'Diubah Pada',
+            'type'  => 'text',
+        ],
+        'updated_by' => [
+            'label' => 'Diubah Oleh',
+            'type'  => 'options-obj:users,id,name',
+        ],
+    ]
 ];
