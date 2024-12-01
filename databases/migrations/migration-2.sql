@@ -46,11 +46,6 @@ CREATE TABLE trn_receive_items (
 
     CONSTRAINT fk_trn_receive_items_receive_id FOREIGN KEY (receive_id) REFERENCES trn_receives(id) ON DELETE CASCADE,
     CONSTRAINT fk_trn_receive_items_item_id FOREIGN KEY (item_id) REFERENCES mst_items(id) ON DELETE SET NULL,
-    CONSTRAINT fk_trn_receive_items_color_id FOREIGN KEY (color_id) REFERENCES mst_colors(id) ON DELETE SET NULL,
-    CONSTRAINT fk_trn_receive_items_motif_id FOREIGN KEY (motif_id) REFERENCES mst_motifs(id) ON DELETE SET NULL,
-    CONSTRAINT fk_trn_receive_items_brand_id FOREIGN KEY (brand_id) REFERENCES mst_brands(id) ON DELETE SET NULL,
-    CONSTRAINT fk_trn_receive_items_size_id FOREIGN KEY (size_id) REFERENCES mst_sizes(id) ON DELETE SET NULL,
-    CONSTRAINT fk_trn_receive_items_type_id FOREIGN KEY (type_id) REFERENCES mst_types(id) ON DELETE SET NULL,
     CONSTRAINT fk_trn_receive_items_created_by FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
     CONSTRAINT fk_trn_receive_items_updated_by FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL
 );
