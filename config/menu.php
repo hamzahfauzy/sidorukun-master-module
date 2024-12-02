@@ -124,7 +124,9 @@ return [
             'master.reports',
             'master.reports.receives',
             'master.reports.outgoings',
-            'master.reports.adjusts'
+            'master.reports.adjusts',
+            'master.reports.stock-card',
+            'master.reports.search',
         ],
         'items' => [
             [
@@ -154,8 +156,8 @@ return [
             [
                 'label' => 'master.menu.stock_card',
                 'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-box-open',
-                'route' => '',
-                'activeState' => false
+                'route' => routeTo('master/reports/stock-card'),
+                'activeState' => 'master.reports.stock-card'
             ],
             [
                 'label' => 'master.menu.void',
@@ -166,8 +168,8 @@ return [
             [
                 'label' => 'master.menu.search',
                 'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-box-open',
-                'route' => '',
-                'activeState' => false
+                'route' => routeTo('master/reports/search'),
+                'activeState' => 'master.reports.search'
             ],
         ]
     ],

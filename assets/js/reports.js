@@ -220,6 +220,43 @@ window.reportAdjusts = $('.datatable-report-adjusts').DataTable({
     ],
 })
 
+window.reportStockCard = $('.datatable-report-stock-card').DataTable({
+    // stateSave:true,
+    ordering: false,
+    pagingType: 'full_numbers_no_ellipses',
+    processing: true,
+    search: {
+        return: true
+    },
+    serverSide: true,
+    ajax: {
+        url: location.href,
+        data: function(data){
+            // Read values
+            var startDate = $('input[name=start_date]').val()
+            var endDate = $('input[name=end_date]').val()
+            var items = $('select[name=items]').val()
+
+            // Append to data
+            data.searchByDate = {
+                startDate,
+                endDate
+            }
+
+            data.filter = {}
+            if(items)
+            {
+                data.filter_item = items
+            }
+            // console.log(data)
+        }
+    },
+    aLengthMenu: [
+        [25, 50, 100, 200, -1],
+        [25, 50, 100, 200, "All"]
+    ],
+})
+
 function downloadReportReceives()
 {
     var data = {}
@@ -417,6 +454,35 @@ function downloadReportAdjusts()
     const url = Qs.stringify(data, { encode: false })
 
     window.location = "/master/reports/adjusts/download?"+url
+}
+
+function downloadReportStockCard()
+{
+    var data = {}
+    var startDate = $('input[name=start_date]').val()
+    var endDate = $('input[name=end_date]').val()
+    var items = $('select[name=items]').val()
+
+    // Append to data
+    data.searchByDate = {
+        startDate,
+        endDate
+    }
+
+    data.filter = {}
+    if(items)
+    {
+        data.filter_item = items
+    }
+    
+    var search = window.reportReceives.search()
+    if(search)
+    {
+        data.search = search
+    }
+    const url = Qs.stringify(data, { encode: false })
+
+    window.location = "/master/reports/stock-card/download?"+url
 }
 
 try {
