@@ -24,7 +24,7 @@ $fields['description'] = [
 ];
 
 $db->query = "SELECT COUNT(*) as `counter` FROM trn_receives WHERE created_at LIKE '%".date('Y-m')."%'";
-$counter = $db->exec('single')?->counter ?? '00001';
+$counter = $db->exec('single')?->counter ?? 1;
 
 $counter = sprintf("%05d", $counter);
 $fields['code']['attr'] = [

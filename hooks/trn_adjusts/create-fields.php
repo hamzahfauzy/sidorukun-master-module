@@ -14,7 +14,7 @@ $fields['unit']['attr'] = [
 ];
 
 $db->query = "SELECT COUNT(*) as `counter` FROM trn_adjusts WHERE created_at LIKE '%".date('Y-m')."%'";
-$counter = $db->exec('single')?->counter ?? '00001';
+$counter = $db->exec('single')?->counter ?? 1;
 
 $counter = sprintf("%05d", $counter);
 $fields['code']['attr'] = [
