@@ -257,6 +257,70 @@ window.reportStockCard = $('.datatable-report-stock-card').DataTable({
     ],
 })
 
+window.reportSearch = $('.datatable-report-search').DataTable({
+    // stateSave:true,
+    pagingType: 'full_numbers_no_ellipses',
+    processing: true,
+    search: {
+        return: true
+    },
+    serverSide: true,
+    ajax: {
+        url: location.href,
+        data: function(data){
+            // Read values
+            var endDate = $('input[name=end_date]').val()
+            var types = $('select[name=types]').val()
+            var sizes = $('select[name=sizes]').val()
+            var brands = $('input[name=brands]').val()
+            var colors = $('input[name=colors]').val()
+            var motifs = $('input[name=motifs]').val()
+
+            // Append to data
+            data.searchByDate = {
+                endDate
+            }
+
+            data.filter = {}
+            if(types)
+            {
+                data.filter.type_id = types
+            }
+            
+            if(sizes)
+            {
+                data.filter.size_id = sizes
+            }
+            
+            if(brands)
+            {
+                data.filter.brand_id = brands
+            }
+            
+            if(colors)
+            {
+                data.filter.color_id = colors
+            }
+            
+            if(motifs)
+            {
+                data.filter.motif_id = motifs
+            }
+
+            if(!Object.keys(data.filter).length)
+            {
+                delete data.filter
+            }
+
+            // console.log(data)
+        }
+    },
+    aLengthMenu: [
+        [25, 50, 100, 200, -1],
+        [25, 50, 100, 200, "All"]
+    ],
+})
+
 function downloadReportReceives()
 {
     var data = {}
@@ -483,6 +547,62 @@ function downloadReportStockCard()
     const url = Qs.stringify(data, { encode: false })
 
     window.location = "/master/reports/stock-card/download?"+url
+}
+
+function downloadReportSearch()
+{
+    var data = {}
+    var endDate = $('input[name=end_date]').val()
+    var types = $('select[name=types]').val()
+    var sizes = $('select[name=sizes]').val()
+    var brands = $('input[name=brands]').val()
+    var colors = $('input[name=colors]').val()
+    var motifs = $('input[name=motifs]').val()
+
+    // Append to data
+    data.searchByDate = {
+        endDate
+    }
+
+    data.filter = {}
+    if(types)
+    {
+        data.filter.type_id = types
+    }
+    
+    if(sizes)
+    {
+        data.filter.size_id = sizes
+    }
+    
+    if(brands)
+    {
+        data.filter.brand_id = brands
+    }
+    
+    if(colors)
+    {
+        data.filter.color_id = colors
+    }
+    
+    if(motifs)
+    {
+        data.filter.motif_id = motifs
+    }
+
+    if(!Object.keys(data.filter).length)
+    {
+        delete data.filter
+    }
+    
+    var search = window.reportReceives.search()
+    if(search)
+    {
+        data.search = search
+    }
+    const url = Qs.stringify(data, { encode: false })
+
+    window.location = "/master/reports/search/download?"+url
 }
 
 try {
