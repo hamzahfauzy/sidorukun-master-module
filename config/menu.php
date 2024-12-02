@@ -123,7 +123,8 @@ return [
         'activeState' => [
             'master.reports',
             'master.reports.receives',
-            'master.reports.outgoings'
+            'master.reports.outgoings',
+            'master.reports.adjusts'
         ],
         'items' => [
             [
