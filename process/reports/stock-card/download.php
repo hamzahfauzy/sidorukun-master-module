@@ -27,11 +27,11 @@ $fields = [
         'label' => 'Relasi'
     ],
     'StokPenerimaan' => [
-        'label' => 'Stok Penerimaan',
+        'label' => 'Terima',
         'type' => 'number'
     ],
     'StokPengeluaran' => [
-        'label' => 'Stok Pengeluaran',
+        'label' => 'Keluar',
         'type' => 'number'
     ],
 ];
