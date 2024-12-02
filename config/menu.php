@@ -122,25 +122,27 @@ return [
         'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-print',
         'activeState' => [
             'master.reports',
+            'master.reports.receives',
+            'master.reports.outgoings'
         ],
         'items' => [
             [
                 'label' => 'master.menu.receives',
                 'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-fill-drip',
-                'route' => '',
-                'activeState' => false
+                'route' => routeTo('master/reports/receives'),
+                'activeState' => 'master.reports.receives'
             ],
             [
                 'label' => 'master.menu.outgoings',
                 'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-box-open',
-                'route' => '',
-                'activeState' => false
+                'route' => routeTo('master/reports/outgoings'),
+                'activeState' => 'master.reports.outgoings'
             ],
             [
                 'label' => 'master.menu.adjusts',
                 'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-box-open',
-                'route' => '',
-                'activeState' => false
+                'route' => routeTo('master/reports/adjusts'),
+                'activeState' => 'master.reports.adjusts'
             ],
             [
                 'label' => 'master.menu.stock',
