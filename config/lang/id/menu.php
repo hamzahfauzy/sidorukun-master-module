@@ -10,7 +10,7 @@ return [
     'colors' => 'Warna',
     'motifs' => 'Motif',
     'items' => 'Barang',
-    'customers' => 'Kustomer',
+    'customers' => 'Customer',
     'suppliers' => 'Supplier',
     'channels' => 'Channel',
     'transactions' => 'Transaksi',

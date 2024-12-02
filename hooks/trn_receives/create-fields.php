@@ -1,5 +1,9 @@
 <?php
 
+use Core\Database;
+
+$db = new Database;
+
 unset($fields['total_items']);
 unset($fields['status']);
 unset($fields['total_qty']);
@@ -17,6 +21,15 @@ $fields['supplier_id'] = [
 $fields['description'] = [
     'label' => 'Deskripsi',
     'type' => 'textarea'
+];
+
+$db->query = "SELECT COUNT(*) as `counter` FROM trn_receives WHERE created_at LIKE '%".date('Y-m')."%'";
+$counter = $db->exec('single')?->counter ?? '00001';
+
+$counter = sprintf("%05d", $counter);
+$fields['code']['attr'] = [
+    'value' => 'SRT' . date('Ym'). $counter,
+    'readonly' => 'readonly'
 ];
 
 return $fields;

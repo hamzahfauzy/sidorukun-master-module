@@ -6,4 +6,8 @@ unset($fields['created_by']);
 unset($fields['updated_at']);
 unset($fields['updated_by']);
 
+$fields['unit']['attr'] = [
+    'readonly' => 'readonly'
+];
+
 return $fields;

@@ -8,7 +8,7 @@ return [
     'mst_colors' => 'Warna',
     'mst_motifs' => 'Motif',
     'mst_items' => 'Barang',
-    'mst_customers' => 'Kustomer',
+    'mst_customers' => 'Customer',
     'mst_suppliers' => 'Supplier',
     'mst_channels' => 'Channel',
     'trn_receives' => 'Penerimaan Barang',

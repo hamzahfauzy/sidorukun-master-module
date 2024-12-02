@@ -283,7 +283,7 @@ return [
         ],
         'receive_date' => [
             'label' => 'Tgl. Terima',
-            'type' => 'datetime-local',
+            'type' => 'date',
         ],
         'supplier_name' => [
             'label' => 'Supplier',
@@ -359,7 +359,7 @@ return [
         ],
         'outgoing_date' => [
             'label' => 'Tgl. Keluar',
-            'type' => 'datetime-local',
+            'type' => 'date',
         ],
         'customer_name' => [
             'label' => 'Kustomer',
@@ -447,7 +447,7 @@ return [
         ],
         'adjust_date' => [
             'label' => 'Tgl. Penyesuaian',
-            'type' => 'datetime-local',
+            'type' => 'date',
         ],
         'item_id' => [
             'label' => 'Nama Barang',
