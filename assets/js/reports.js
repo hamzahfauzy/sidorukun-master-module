@@ -321,6 +321,71 @@ window.reportSearch = $('.datatable-report-search').DataTable({
     ],
 })
 
+window.reportVoid = $('.datatable-report-void').DataTable({
+    // stateSave:true,
+    paging:false,
+    pagingType: 'full_numbers_no_ellipses',
+    processing: true,
+    search: false,
+    serverSide: true,
+    ajax: {
+        url: location.href,
+        data: function(data){
+            // Read values
+            var startDate = $('input[name=start_date]').val()
+            var endDate = $('input[name=end_date]').val()
+            var types = $('select[name=types]').val()
+            var sizes = $('select[name=sizes]').val()
+            var brands = $('input[name=brands]').val()
+            var colors = $('input[name=colors]').val()
+            var motifs = $('input[name=motifs]').val()
+
+            // Append to data
+            data.searchByDate = {
+                startDate,
+                endDate
+            }
+
+            data.filter = {}
+            if(types)
+            {
+                data.filter.type_id = types
+            }
+            
+            if(sizes)
+            {
+                data.filter.size_id = sizes
+            }
+            
+            if(brands)
+            {
+                data.filter.brand_id = brands
+            }
+            
+            if(colors)
+            {
+                data.filter.color_id = colors
+            }
+            
+            if(motifs)
+            {
+                data.filter.motif_id = motifs
+            }
+
+            if(!Object.keys(data.filter).length)
+            {
+                delete data.filter
+            }
+
+            // console.log(data)
+        }
+    },
+    aLengthMenu: [
+        [25, 50, 100, 200, -1],
+        [25, 50, 100, 200, "All"]
+    ],
+})
+
 function downloadReportReceives()
 {
     var data = {}
@@ -603,6 +668,64 @@ function downloadReportSearch()
     const url = Qs.stringify(data, { encode: false })
 
     window.location = "/master/reports/search/download?"+url
+}
+
+function downloadReportVoid()
+{
+    var data = {}
+    var startDate = $('input[name=start_date]').val()
+    var endDate = $('input[name=end_date]').val()
+    var types = $('select[name=types]').val()
+    var sizes = $('select[name=sizes]').val()
+    var brands = $('input[name=brands]').val()
+    var colors = $('input[name=colors]').val()
+    var motifs = $('input[name=motifs]').val()
+
+    // Append to data
+    data.searchByDate = {
+        startDate,
+        endDate
+    }
+
+    data.filter = {}
+    if(types)
+    {
+        data.filter.type_id = types
+    }
+    
+    if(sizes)
+    {
+        data.filter.size_id = sizes
+    }
+    
+    if(brands)
+    {
+        data.filter.brand_id = brands
+    }
+    
+    if(colors)
+    {
+        data.filter.color_id = colors
+    }
+    
+    if(motifs)
+    {
+        data.filter.motif_id = motifs
+    }
+
+    if(!Object.keys(data.filter).length)
+    {
+        delete data.filter
+    }
+    
+    var search = window.reportVoid.search()
+    if(search)
+    {
+        data.search = search
+    }
+    const url = Qs.stringify(data, { encode: false })
+
+    window.location = "/master/reports/void/download?"+url
 }
 
 try {

@@ -126,6 +126,7 @@ return [
             'master.reports.outgoings',
             'master.reports.adjusts',
             'master.reports.stock-card',
+            'master.reports.void',
             'master.reports.search',
         ],
         'items' => [
@@ -162,8 +163,8 @@ return [
             [
                 'label' => 'master.menu.void',
                 'icon'  => 'fa-fw fa-lg me-2 fa-solid fa-box-open',
-                'route' => '',
-                'activeState' => false
+                'route' => routeTo('master/reports/void'),
+                'activeState' => 'master.reports.void'
             ],
             [
                 'label' => 'master.menu.search',
