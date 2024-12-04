@@ -303,7 +303,8 @@ return [
             'label' => 'Tgl. Terima',
             'type' => 'date',
             'attr' => [
-                'required' => 'required'
+                'required' => 'required',
+                'max' => date('Y-m-d')
             ]
         ],
         'supplier_name' => [
@@ -388,7 +389,8 @@ return [
             'label' => 'Tgl. Keluar',
             'type' => 'date',
             'attr' => [
-                'required' => 'required'
+                'required' => 'required',
+                'max' => date('Y-m-d')
             ]
         ],
         'customer_name' => [
@@ -491,7 +493,8 @@ return [
             'label' => 'Tgl. Penyesuaian',
             'type' => 'date',
             'attr' => [
-                'required' => 'required'
+                'required' => 'required',
+                'max' => date('Y-m-d')
             ]
         ],
         'item_id' => [

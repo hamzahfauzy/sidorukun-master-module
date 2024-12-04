@@ -1,5 +1,16 @@
 <?php
 
+use Core\Validation;
+
+Validation::run([
+    'item_id' => [
+        'required'
+    ],
+    'qty' => [
+        'required'
+    ]
+], $data);
+
 if(!isset($data['outgoing_id']) && isset($_GET['filter']['outgoing_id']))
 {
     $data['outgoing_id'] = $_GET['filter']['outgoing_id'];
