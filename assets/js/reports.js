@@ -15,9 +15,9 @@ window.reportReceives = $('.datatable-report-receives').DataTable({
             var suppliers = $('select[name=suppliers]').val()
             var types = $('select[name=types]').val()
             var sizes = $('select[name=sizes]').val()
-            var brands = $('input[name=brands]').val()
-            var colors = $('input[name=colors]').val()
-            var motifs = $('input[name=motifs]').val()
+            var brands = $('select[name=brands]').val()
+            var colors = $('select[name=colors]').val()
+            var motifs = $('select[name=motifs]').val()
 
             // Append to data
             data.searchByDate = {
@@ -89,9 +89,9 @@ window.reportOutgoings = $('.datatable-report-outgoings').DataTable({
             var outgoing_type = $('select[name=outgoing_type]').val()
             var types = $('select[name=types]').val()
             var sizes = $('select[name=sizes]').val()
-            var brands = $('input[name=brands]').val()
-            var colors = $('input[name=colors]').val()
-            var motifs = $('input[name=motifs]').val()
+            var brands = $('select[name=brands]').val()
+            var colors = $('select[name=colors]').val()
+            var motifs = $('select[name=motifs]').val()
 
             // Append to data
             data.searchByDate = {
@@ -170,9 +170,9 @@ window.reportAdjusts = $('.datatable-report-adjusts').DataTable({
             var endDate = $('input[name=end_date]').val()
             var types = $('select[name=types]').val()
             var sizes = $('select[name=sizes]').val()
-            var brands = $('input[name=brands]').val()
-            var colors = $('input[name=colors]').val()
-            var motifs = $('input[name=motifs]').val()
+            var brands = $('select[name=brands]').val()
+            var colors = $('select[name=colors]').val()
+            var motifs = $('select[name=motifs]').val()
 
             // Append to data
             data.searchByDate = {
@@ -272,9 +272,9 @@ window.reportSearch = $('.datatable-report-search').DataTable({
             var endDate = $('input[name=end_date]').val()
             var types = $('select[name=types]').val()
             var sizes = $('select[name=sizes]').val()
-            var brands = $('input[name=brands]').val()
-            var colors = $('input[name=colors]').val()
-            var motifs = $('input[name=motifs]').val()
+            var brands = $('select[name=brands]').val()
+            var colors = $('select[name=colors]').val()
+            var motifs = $('select[name=motifs]').val()
 
             // Append to data
             data.searchByDate = {
@@ -336,9 +336,9 @@ window.reportVoid = $('.datatable-report-void').DataTable({
             var endDate = $('input[name=end_date]').val()
             var types = $('select[name=types]').val()
             var sizes = $('select[name=sizes]').val()
-            var brands = $('input[name=brands]').val()
-            var colors = $('input[name=colors]').val()
-            var motifs = $('input[name=motifs]').val()
+            var brands = $('select[name=brands]').val()
+            var colors = $('select[name=colors]').val()
+            var motifs = $('select[name=motifs]').val()
 
             // Append to data
             data.searchByDate = {
@@ -401,9 +401,9 @@ window.reportStock = $('.datatable-report-stock').DataTable({
             var endDate = $('input[name=end_date]').val()
             var types = $('select[name=types]').val()
             var sizes = $('select[name=sizes]').val()
-            var brands = $('input[name=brands]').val()
-            var colors = $('input[name=colors]').val()
-            var motifs = $('input[name=motifs]').val()
+            var brands = $('select[name=brands]').val()
+            var colors = $('select[name=colors]').val()
+            var motifs = $('select[name=motifs]').val()
 
             // Append to data
             data.searchByDate = {
@@ -459,9 +459,9 @@ function downloadReportReceives()
     var suppliers = $('select[name=suppliers]').val()
     var types = $('select[name=types]').val()
     var sizes = $('select[name=sizes]').val()
-    var brands = $('input[name=brands]').val()
-    var colors = $('input[name=colors]').val()
-    var motifs = $('input[name=motifs]').val()
+    var brands = $('select[name=brands]').val()
+    var colors = $('select[name=colors]').val()
+    var motifs = $('select[name=motifs]').val()
 
     // Append to data
     data.searchByDate = {
@@ -525,9 +525,9 @@ function downloadReportOutgoings()
     var outgoing_type = $('select[name=outgoing_type]').val()
     var types = $('select[name=types]').val()
     var sizes = $('select[name=sizes]').val()
-    var brands = $('input[name=brands]').val()
-    var colors = $('input[name=colors]').val()
-    var motifs = $('input[name=motifs]').val()
+    var brands = $('select[name=brands]').val()
+    var colors = $('select[name=colors]').val()
+    var motifs = $('select[name=motifs]').val()
 
     // Append to data
     data.searchByDate = {
@@ -599,9 +599,9 @@ function downloadReportAdjusts()
     var endDate = $('input[name=end_date]').val()
     var types = $('select[name=types]').val()
     var sizes = $('select[name=sizes]').val()
-    var brands = $('input[name=brands]').val()
-    var colors = $('input[name=colors]').val()
-    var motifs = $('input[name=motifs]').val()
+    var brands = $('select[name=brands]').val()
+    var colors = $('select[name=colors]').val()
+    var motifs = $('select[name=motifs]').val()
 
     // Append to data
     data.searchByDate = {
@@ -685,9 +685,9 @@ function downloadReportSearch()
     var endDate = $('input[name=end_date]').val()
     var types = $('select[name=types]').val()
     var sizes = $('select[name=sizes]').val()
-    var brands = $('input[name=brands]').val()
-    var colors = $('input[name=colors]').val()
-    var motifs = $('input[name=motifs]').val()
+    var brands = $('select[name=brands]').val()
+    var colors = $('select[name=colors]').val()
+    var motifs = $('select[name=motifs]').val()
 
     // Append to data
     data.searchByDate = {
@@ -742,9 +742,9 @@ function downloadReportVoid()
     var endDate = $('input[name=end_date]').val()
     var types = $('select[name=types]').val()
     var sizes = $('select[name=sizes]').val()
-    var brands = $('input[name=brands]').val()
-    var colors = $('input[name=colors]').val()
-    var motifs = $('input[name=motifs]').val()
+    var brands = $('select[name=brands]').val()
+    var colors = $('select[name=colors]').val()
+    var motifs = $('select[name=motifs]').val()
 
     // Append to data
     data.searchByDate = {
@@ -800,9 +800,9 @@ function downloadReportStock()
     var endDate = $('input[name=end_date]').val()
     var types = $('select[name=types]').val()
     var sizes = $('select[name=sizes]').val()
-    var brands = $('input[name=brands]').val()
-    var colors = $('input[name=colors]').val()
-    var motifs = $('input[name=motifs]').val()
+    var brands = $('select[name=brands]').val()
+    var colors = $('select[name=colors]').val()
+    var motifs = $('select[name=motifs]').val()
 
     // Append to data
     data.searchByDate = {

@@ -481,7 +481,10 @@ return [
         ],
         'description' => [
             'label' => 'Deskripsi',
-            'type' => 'textarea'
+            'type' => 'textarea',
+            'attr'  => [
+                'class' => 'form-control select2-search__field'
+            ]
         ],
         'created_at' => [
             'label' => 'Dibuat Pada',
