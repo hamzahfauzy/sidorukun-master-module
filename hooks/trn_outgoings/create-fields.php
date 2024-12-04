@@ -33,9 +33,9 @@ $fields['description'] = [
 ];
 
 $db->query = "SELECT COUNT(*) as `counter` FROM trn_outgoings WHERE created_at LIKE '%".date('Y-m')."%'";
-$counter = $db->exec('single')?->counter && $db->exec('single')?->counter > 0 ? $db->exec('single')?->counter : 1;
+$counter = $db->exec('single')?->counter ?? 0;
 
-$counter = sprintf("%05d", $counter);
+$counter = sprintf("%05d", $counter+1);
 $fields['code']['attr'] = [
     'value' => 'SRK' . date('Ym'). $counter,
     'readonly' => 'readonly'
