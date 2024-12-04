@@ -17,7 +17,7 @@ $id = $_GET['filter']['outgoing_id'];
 $db = new Database;
 $db->query = "SELECT id, name FROM mst_items WHERE status = 'ACTIVE' AND id NOT IN (SELECT item_id FROM trn_outgoing_items WHERE outgoing_id = $id)";
 $items = $db->exec('all');
-$lists = [];
+$lists = [__('crud.label.choose') => -1];
 foreach($items as $item)
 {
     $lists[$item->name] = $item->id;
