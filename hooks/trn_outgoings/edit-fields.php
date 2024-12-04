@@ -12,7 +12,7 @@ unset($fields['updated_by']);
 
 $fields['customer_id'] = [
     'label' => 'customer',
-    'type' => 'options-obj:mst_customers,id,name'
+    'type' => 'options-obj:mst_customers,id,name|status,ACTIVE'
 ];
 
 $fields['channel_id'] = [
@@ -22,7 +22,10 @@ $fields['channel_id'] = [
 
 $fields['description'] = [
     'label' => 'Deskripsi',
-    'type' => 'textarea'
+    'type' => 'textarea',
+    'attr' => [
+        'class' => 'form-control select2-search__field'
+    ]
 ];
 
 return $fields;

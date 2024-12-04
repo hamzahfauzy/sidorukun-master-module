@@ -13,6 +13,8 @@ $fields['unit']['attr'] = [
     'readonly' => 'readonly'
 ];
 
+$fields['item_id']['type'] = 'options-obj:mst_items,id,name|status,ACTIVE';
+
 $db->query = "SELECT COUNT(*) as `counter` FROM trn_adjusts WHERE created_at LIKE '%".date('Y-m')."%'";
 $counter = $db->exec('single')?->counter && $db->exec('single')?->counter > 0 ? $db->exec('single')?->counter : 1;
 

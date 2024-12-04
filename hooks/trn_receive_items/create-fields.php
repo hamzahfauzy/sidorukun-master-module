@@ -9,5 +9,5 @@ unset($fields['updated_by']);
 $fields['unit']['attr'] = [
     'readonly' => 'readonly'
 ];
-
+$fields['item_id']['type'] = 'options-obj:mst_items,id,name|status,ACTIVE';
 return $fields;

@@ -11,12 +11,15 @@ unset($fields['updated_by']);
 
 $fields['supplier_id'] = [
     'label' => 'Supplier',
-    'type' => 'options-obj:mst_suppliers,id,name'
+    'type' => 'options-obj:mst_suppliers,id,name|status,ACTIVE'
 ];
 
 $fields['description'] = [
     'label' => 'Deskripsi',
-    'type' => 'textarea'
+    'type' => 'textarea',
+    'attr' => [
+        'class' => 'form-control select2-search__field'
+    ]
 ];
 
 return $fields;

@@ -25,7 +25,7 @@ table.table td, table.table th {
             </div>
             <div class="form-group mb-1">
                 <label for="">Barang</label><br>
-                <?= \Core\Form::input('options-obj:mst_items,id,name', 'items', ['class' => 'form-control w-100']) ?>
+                <?= \Core\Form::input('options-obj:mst_items,id,name|status,ACTIVE', 'items', ['class' => 'form-control w-100']) ?>
             </div>
             <div class="form-group mb-1">
                 <label for="">&nbsp;</label>
