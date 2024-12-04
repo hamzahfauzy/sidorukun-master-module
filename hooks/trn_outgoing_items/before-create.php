@@ -7,7 +7,8 @@ Validation::run([
         'required'
     ],
     'qty' => [
-        'required'
+        'required',
+        'min:1'
     ]
 ], $data);
 
