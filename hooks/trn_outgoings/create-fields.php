@@ -16,12 +16,18 @@ unset($fields['updated_by']);
 
 $fields['customer_id'] = [
     'label' => 'customer',
-    'type' => 'options-obj:mst_customers,id,name|status,ACTIVE'
+    'type' => 'options-obj:mst_customers,id,name|status,ACTIVE',
+    'attr' => [
+        'required' => 'required'
+    ]
 ];
 
 $fields['channel_id'] = [
     'label' => 'channel',
-    'type' => 'options-obj:mst_channels,id,name'
+    'type' => 'options-obj:mst_channels,id,name',
+    'attr' => [
+        'required' => 'required'
+    ]
 ];
 
 $fields['description'] = [

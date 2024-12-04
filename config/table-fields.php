@@ -302,6 +302,9 @@ return [
         'receive_date' => [
             'label' => 'Tgl. Terima',
             'type' => 'date',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'supplier_name' => [
             'label' => 'Supplier',
@@ -343,11 +346,17 @@ return [
         ],
         'item_id' => [
             'label' => 'Nama Barang',
-            'type' => 'options-obj:mst_items,id,name'
+            'type' => 'options-obj:mst_items,id,name',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'qty' => [
             'label' => 'QTY',
             'type' => 'number',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'unit' => [
             'label' => 'Satuan',
@@ -378,6 +387,9 @@ return [
         'outgoing_date' => [
             'label' => 'Tgl. Keluar',
             'type' => 'date',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'customer_name' => [
             'label' => 'Kustomer',
@@ -385,15 +397,21 @@ return [
         ],
         'channel_name' => [
             'label' => 'Channel',
-            'type' => 'text'
+            'type' => 'text',
         ],
         'order_code' => [
             'label' => 'No Pesanan',
-            'type' => 'text'
+            'type' => 'text',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'receipt_code' => [
             'label' => 'No Resi',
-            'type' => 'text'
+            'type' => 'text',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'outgoing_type' => [
             'label' => 'Jenis',
@@ -431,11 +449,17 @@ return [
     'trn_outgoing_items' => [
         'item_id' => [
             'label' => 'Nama Barang',
-            'type' => 'options-obj:mst_items,id,name'
+            'type' => 'options-obj:mst_items,id,name',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'qty' => [
             'label' => 'QTY',
             'type' => 'number',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'unit' => [
             'label' => 'Satuan',
@@ -466,14 +490,23 @@ return [
         'adjust_date' => [
             'label' => 'Tgl. Penyesuaian',
             'type' => 'date',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'item_id' => [
             'label' => 'Nama Barang',
-            'type' => 'options-obj:mst_items,id,name'
+            'type' => 'options-obj:mst_items,id,name',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'qty' => [
             'label' => 'Qty',
-            'type' => 'number'
+            'type' => 'number',
+            'attr' => [
+                'required' => 'required'
+            ]
         ],
         'unit' => [
             'label' => 'Satuan',

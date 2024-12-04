@@ -15,7 +15,10 @@ unset($fields['updated_by']);
 
 $fields['supplier_id'] = [
     'label' => 'Supplier',
-    'type' => 'options-obj:mst_suppliers,id,name|status,ACTIVE'
+    'type' => 'options-obj:mst_suppliers,id,name|status,ACTIVE',
+    'attr' => [
+        'required' => 'required'
+    ]
 ];
 
 $fields['description'] = [
