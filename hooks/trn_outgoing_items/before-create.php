@@ -8,7 +8,7 @@ Validation::run([
     ],
     'qty' => [
         'required',
-        'min:1'
+        'gte:1'
     ]
 ], $data);
 
