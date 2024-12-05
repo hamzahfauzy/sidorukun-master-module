@@ -104,7 +104,7 @@ From
 	From 
 		(
 		Select F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As JlhQty 
-		From mst_items F Where F.id = 1 
+		From mst_items F Where F.id $filter_item
 		
 		Union
 		
