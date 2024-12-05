@@ -56,7 +56,7 @@ if(isset($_GET['draw']))
 
         $where = "WHERE (".implode(' OR ',$_where).")";
     }
-    
+
     $col_order = $order[0]['column']-1;
     $col_order = $col_order < 0 ? 'KodeProduk' : $columns[$col_order];
 
@@ -177,7 +177,7 @@ Group By Result.KodeProduk, Result.NamaProduk, Result.Satuan";
 }
 
 $title = 'Laporan Pencarian';
-Page::setActive("master.reports.receives");
+Page::setActive("master.reports.search");
 Page::setTitle($title);
 Page::setModuleName('master.reports');
 Page::setBreadcrumbs([
