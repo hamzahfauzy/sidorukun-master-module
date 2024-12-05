@@ -28,4 +28,6 @@ $fields['description'] = [
     ]
 ];
 
+$fields['code']['attr']['readonly'] = 'readonly';
+
 return $fields;
