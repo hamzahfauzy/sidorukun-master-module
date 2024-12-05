@@ -17,11 +17,11 @@ if($filter)
 
 $where = $where ." ". $having;
 
-$order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
-if($draw == 1)
-{
-    $order_clause = "ORDER BY receive_date desc, code asc";
-}
+$order_clause = "ORDER BY receive_date desc, code asc";
+// $order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
+// if($draw == 1)
+// {
+// }
 
 $this->db->query = "SELECT * FROM $this->table $where $order_clause LIMIT $start,$length";
 $data  = $this->db->exec('all');

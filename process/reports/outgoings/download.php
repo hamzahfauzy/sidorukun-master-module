@@ -103,11 +103,11 @@ if($filter)
 
 $where = $where ." ". $having;
 
-$order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
-if($draw == 1)
-{
-    $order_clause = "ORDER BY code, outgoing_date, trn_outgoing_items.id";
-}
+$order_clause = "ORDER BY code, outgoing_date, trn_outgoing_items.id";
+// $order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
+// if($draw == 1)
+// {
+// }
 
 $query = "SELECT 
     trn_outgoing_items.id id,
