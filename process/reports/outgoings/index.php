@@ -116,7 +116,7 @@ if(isset($_GET['draw']))
     JOIN mst_colors ON mst_colors.id = mst_items.color_id
     JOIN mst_motifs ON mst_motifs.id = mst_items.motif_id
     JOIN mst_types ON mst_types.id = mst_items.type_id
-    JOIN trn_outgoings ON trn_outgoings.id = trn_outgoing_items.outgoing_id
+    JOIN trn_outgoings ON trn_outgoings.id = trn_outgoing_items.outgoing_id AND trn_outgoings.status <> 'CANCEL'
     $where";
 
     $db->query = "$query ORDER BY ".$col_order." ".$order[0]['dir']." LIMIT $start,$length";

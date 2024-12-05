@@ -33,7 +33,7 @@ table.table td, table.table th {
             </div>
             <div class="form-group mb-1">
                 <label for="">Jenis</label><br>
-                <?= \Core\Form::input('options:{"- Pilih -":"","REG":"REG","CARGO":"CARGO","HEMAT":"HEMAT","INSTANT":"INSTANT"}', 'outgoing_type', ['class' => 'form-control w-100']) ?>
+                <?= \Core\Form::input('options:{"- Pilih -":"","CARGO":"CARGO","HEMAT":"HEMAT","INSTANT":"INSTANT","REG":"REG"}', 'outgoing_type', ['class' => 'form-control w-100']) ?>
             </div>
             <div class="form-group mb-1">
                 <label for="">Tipe</label><br>
