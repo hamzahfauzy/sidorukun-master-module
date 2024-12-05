@@ -17,7 +17,7 @@ table.table td, table.table th {
         <form action="" onsubmit="window.reportSearch.draw(); return false" class="d-flex flex-wrap" style="gap:10px;">
             <div class="form-group mb-1">
                 <label for="">Tanggal Terakhir</label>
-                <input type="date" name="end_date" id="" class="form-control w-100" value="<?= date('Y-m-d') ?>">
+                <input type="date" name="end_date" id="" class="form-control w-100" value="<?= date('Y-m-d') ?>" readonly>
             </div>
             <div class="form-group mb-1">
                 <label for="">Tipe</label><br>
