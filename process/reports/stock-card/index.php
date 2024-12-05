@@ -16,7 +16,8 @@ $fields = [
         'type' => 'date'
     ],
     'Relasi' => [
-        'label' => 'Keterangan'
+        'label' => 'Keterangan',
+        'type' => 'text'
     ],
     'StokPenerimaan' => [
         'label' => 'Terima',
