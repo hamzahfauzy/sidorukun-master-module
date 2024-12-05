@@ -36,7 +36,15 @@ $fields = [
     'qty_unit' => [
         'label' => 'QTY / Satuan',
         'type' => 'text'
-    ]
+    ],
+    'receipt_code' => [
+        'label' => 'No. Resi',
+        'type' => 'text'
+    ],
+    'order_code' => [
+        'label' => 'No. Pesanan',
+        'type' => 'text'
+    ],
 ];
 
 $draw    = Request::get('draw', 1);
@@ -104,6 +112,8 @@ $query = "SELECT
     trn_outgoings.outgoing_type, 
     mst_items.name item_name, 
     CONCAT(trn_outgoing_items.qty,' ',trn_outgoing_items.unit) qty_unit,
+    trn_outgoings.receipt_code, 
+    trn_outgoings.order_code, 
     mst_brands.name brand_name,
     mst_colors.name color_name,
     mst_motifs.name motif_name,
