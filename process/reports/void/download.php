@@ -21,8 +21,8 @@ $fields = [
         'label' => 'Nama Relasi',
         'type' => 'text'
     ],
-    'Alasan' => [
-        'label' => 'Alasan Cancel',
+    'Jenis' => [
+        'label' => 'Jenis',
         'type' => 'text'
     ],
     'NamaProduk' => [
@@ -33,7 +33,8 @@ $fields = [
         'label' => 'Qty',
         'type' => 'number'
     ],
-    'Satuan'
+    'Satuan',
+    'Keterangan',
 ];
 
 $draw    = Request::get('draw', 1);
@@ -76,7 +77,7 @@ $draw    = Request::get('draw', 1);
 
     $query = "Select * From
 (
-Select 1 As Jenis, A.code As NoDokumen, Date(A.receive_date) As TglDokumen, 
+Select 'Penerimaan' As Jenis, A.code As NoDokumen, Date(A.receive_date) As TglDokumen, 
 	A.supplier_id As KodeRelasi, A.supplier_name As NamaRelasi, A.total_items, A.total_qty, 
 	A.cancel_reason As Alasan, A.description As Keterangan, 
 	B.item_id As KodeProduk, C.name As NamaProduk, B.qty, B.unit As Satuan 
@@ -90,7 +91,7 @@ $where
 
 Union
 
-Select 2 As Jenis, A.code As NoDokumen, Date(A.outgoing_date) As TglDokumen, 
+Select 'Pengeluaran' As Jenis, A.code As NoDokumen, Date(A.outgoing_date) As TglDokumen, 
 	A.channel_id As KodeRelasi, A.channel_name As NamaRelasi, A.total_items, A.total_qty, 
 	A.cancel_reason As Alasan, CONCAT(A.customer_name, ' - ', A.outgoing_type, ' - ', A.order_code, ' - ', A.receipt_code) As Keterangan, 
 	B.item_id As KodeProduk, C.name As NamaProduk, B.qty, B.unit As Satuan 
