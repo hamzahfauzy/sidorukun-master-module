@@ -48,7 +48,7 @@ if(isset($_GET['draw']))
         $search_columns[] = is_array($field) ? $key : $field;
     }
 
-    $where = "";
+    $where = "WHERE A.status <> 'CANCEL'";
 
     if(!empty($search))
     {
@@ -58,12 +58,12 @@ if(isset($_GET['draw']))
             $_where[] = "$col LIKE '%$search%'";
         }
 
-        $where = "WHERE (".implode(' OR ',$_where).")";
+        $where = " (".implode(' OR ',$_where).")";
     }
 
     if($searchByDate)
     {
-        $where = (empty($where) ? "WHERE " : " AND ") . " receive_date BETWEEN '$searchByDate[startDate]' AND '$searchByDate[endDate]'";
+        $where = " AND receive_date BETWEEN '$searchByDate[startDate]' AND '$searchByDate[endDate]'";
     }
 
     $col_order = $order[0]['column']-1;
