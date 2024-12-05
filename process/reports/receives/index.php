@@ -86,6 +86,12 @@ if(isset($_GET['draw']))
 
     $where = $where ." ". $having;
 
+    $order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
+    if($draw == 1)
+    {
+        $order_clause = "ORDER BY receive_date desc, code asc";
+    }
+
     $query = "SELECT 
         trn_receive_items.id id,
         trn_receives.code, 
@@ -109,7 +115,7 @@ if(isset($_GET['draw']))
     JOIN trn_receives ON trn_receives.id = trn_receive_items.receive_id AND trn_receives.status <> 'CANCEL'
     $where";
 
-    $db->query = "$query ORDER BY ".$col_order." ".$order[0]['dir']." LIMIT $start,$length";
+    $db->query = "$query $order_clause LIMIT $start,$length";
     $data  = $db->exec('all');
 
     $db->query = $query;

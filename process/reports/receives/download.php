@@ -87,6 +87,12 @@ if($filter)
 
 $where = $where ." ". $having;
 
+$order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
+if($draw == 1)
+{
+    $order_clause = "ORDER BY receive_date desc, code asc";
+}
+
 $query = "SELECT 
     trn_receive_items.id id,
     trn_receives.receive_date, 
@@ -110,7 +116,7 @@ JOIN mst_types ON mst_types.id = mst_items.type_id
 JOIN trn_receives ON trn_receives.id = trn_receive_items.receive_id AND trn_receives.status <> 'CANCEL'
 $where";
 
-$db->query = "$query ORDER BY ".$col_order." ".$order[0]['dir'];
+$db->query = "$query $order_clause";
 $data  = $db->exec('all');
 
 $filename = "receive-download-".date('Y-m-d H:i:s').".xlsx";
