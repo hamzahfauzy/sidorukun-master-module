@@ -48,7 +48,7 @@ if(isset($_GET['draw']))
         $search_columns[] = is_array($field) ? $key : $field;
     }
 
-    $where = "WHERE A.status <> 'CANCEL'";
+    $where = "";
 
     if(!empty($search))
     {
@@ -58,12 +58,12 @@ if(isset($_GET['draw']))
             $_where[] = "$col LIKE '%$search%'";
         }
 
-        $where = " (".implode(' OR ',$_where).")";
+        $where = "WHERE (".implode(' OR ',$_where).")";
     }
 
     if($searchByDate)
     {
-        $where = " AND receive_date BETWEEN '$searchByDate[startDate]' AND '$searchByDate[endDate]'";
+        $where = (empty($where) ? "WHERE " : " AND ") . " receive_date BETWEEN '$searchByDate[startDate]' AND '$searchByDate[endDate]'";
     }
 
     $col_order = $order[0]['column']-1;
@@ -106,7 +106,7 @@ if(isset($_GET['draw']))
     JOIN mst_colors ON mst_colors.id = mst_items.color_id
     JOIN mst_motifs ON mst_motifs.id = mst_items.motif_id
     JOIN mst_types ON mst_types.id = mst_items.type_id
-    JOIN trn_receives ON trn_receives.id = trn_receive_items.receive_id
+    JOIN trn_receives ON trn_receives.id = trn_receive_items.receive_id AND trn_receives.status <> 'CANCEL'
     $where";
 
     $db->query = "$query ORDER BY ".$col_order." ".$order[0]['dir']." LIMIT $start,$length";
