@@ -65,8 +65,8 @@ window.reportReceives = $('.datatable-report-receives').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
@@ -149,8 +149,8 @@ window.reportOutgoings = $('.datatable-report-outgoings').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
@@ -215,8 +215,8 @@ window.reportAdjusts = $('.datatable-report-adjusts').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
@@ -252,8 +252,8 @@ window.reportStockCard = $('.datatable-report-stock-card').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
@@ -316,8 +316,8 @@ window.reportSearch = $('.datatable-report-search').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
@@ -381,8 +381,8 @@ window.reportVoid = $('.datatable-report-void').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
@@ -446,8 +446,8 @@ window.reportStock = $('.datatable-report-stock').DataTable({
         }
     },
     aLengthMenu: [
-        [25, 50, 100, 200, -1],
-        [25, 50, 100, 200, "All"]
+        [25, 50, 100, 200],
+        [25, 50, 100, 200]
     ],
 })
 
