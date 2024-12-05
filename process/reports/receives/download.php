@@ -90,7 +90,7 @@ $where = $where ." ". $having;
 $order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
 if($draw == 1)
 {
-    $order_clause = "ORDER BY receive_date desc, code asc";
+    $order_clause = "ORDER BY code, receive_date, trn_receive_items.id";
 }
 
 $query = "SELECT 

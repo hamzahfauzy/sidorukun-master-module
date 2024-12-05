@@ -105,7 +105,7 @@ if(isset($_GET['draw']))
     $order_clause = "ORDER BY ".$col_order." ".$order[0]['dir'];
     if($draw == 1)
     {
-        $order_clause = "ORDER BY outgoing_date desc, code asc";
+        $order_clause = "ORDER BY code, outgoing_date, trn_outgoing_items.id";
     }
 
     $query = "SELECT 
