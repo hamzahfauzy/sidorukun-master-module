@@ -114,7 +114,7 @@ From
 			Inner Join trn_receive_items Y On X.id = Y.receive_id 
 			Left Join mst_items Z On Y.item_id = Z.id  
 		Where X.receive_date < '$searchByDate[startDate]' And X.status <> 'CANCEL' 
-			And Y.item_id = 1 
+			And Y.item_id $filter_item 
 		Group By Z.id, Z.name, Z.unit 
 
 		Union 
@@ -125,7 +125,7 @@ From
 			Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 			Left Join mst_items C On B.item_id = C.id  
 		Where A.outgoing_date < '$searchByDate[startDate]' And A.status <> 'CANCEL'
-			And B.item_id = 1 
+			And B.item_id $filter_item 
 		Group By C.id, C.name, C.unit 
 	
 		Union 
@@ -135,7 +135,7 @@ From
 		From trn_adjusts M 
 			Inner Join mst_items O On M.item_id = O.id  
 		Where M.adjust_date < '$searchByDate[startDate]' 
-			And M.item_id = 1 
+			And M.item_id $filter_item 
 		Group By O.id, O.name, O.unit 
 		
 	) Result 
@@ -150,7 +150,7 @@ From
 		Inner Join trn_receive_items B On A.id = B.receive_id 
 		Left Join mst_suppliers C On A.supplier_id = C.id 
 	Where A.receive_date >= '$searchByDate[startDate]' And A.receive_date <= '$searchByDate[endDate]' 
-		And A.status <> 'CANCEL' And B.item_id = 1 
+		And A.status <> 'CANCEL' And B.item_id $filter_item 
 	Group By A.code, A.receive_date, Concat(C.name, ' - ', C.phone)  
 
 	Union
@@ -160,7 +160,7 @@ From
 	From trn_outgoings A
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id 
 	Where A.outgoing_date >= '$searchByDate[startDate]' And A.outgoing_date <= '$searchByDate[endDate]' 
-		And A.status <> 'CANCEL' And B.item_id = 1 
+		And A.status <> 'CANCEL' And B.item_id $filter_item 
 	Group By A.code, A.outgoing_date, Concat(A.channel_name, ' - ', A.customer_name)  
 
 	Union 
@@ -170,7 +170,7 @@ From
 		SUM(Case When COALESCE(A.qty, 0) < 0 Then COALESCE(-A.qty, 0) Else 0 End) As StokPengeluaran
 	From trn_adjusts A 
 	Where A.adjust_date >= '$searchByDate[startDate]' And A.adjust_date <= '$searchByDate[endDate]' 
-		And A.item_id = 1  
+		And A.item_id $filter_item  
 	Group By A.code, A.adjust_date, A.description  
 		
 ) Tampil 
