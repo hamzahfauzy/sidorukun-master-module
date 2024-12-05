@@ -9,9 +9,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 $db = new Database;
 
 $fields = [
-    'Nomor' => [
-        'label' => 'Nomor'
-    ],
     'Jenis' => [
         'label' => 'Jenis'
     ],
@@ -24,7 +21,7 @@ $fields = [
         'type' => 'date'
     ],
     'Relasi' => [
-        'label' => 'Relasi'
+        'label' => 'Keterangan'
     ],
     'StokPenerimaan' => [
         'label' => 'Terima',

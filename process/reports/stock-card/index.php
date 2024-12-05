@@ -6,7 +6,6 @@ use Core\Request;
 $db = new Database;
 
 $fields = [
-    'Nomor',
     'Jenis',
     'NoDokumen' => [
         'label' => 'No. Dokumen',
@@ -16,7 +15,9 @@ $fields = [
         'label' => 'Tgl. Dokumen',
         'type' => 'date'
     ],
-    'Relasi',
+    'Relasi' => [
+        'label' => 'Keterangan'
+    ],
     'StokPenerimaan' => [
         'label' => 'Terima',
         'type' => 'number'
