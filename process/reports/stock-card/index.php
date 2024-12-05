@@ -29,6 +29,15 @@ $fields = [
 
 if(isset($_GET['draw']))
 {
+    if(!isset($_GET['filter_item']))
+    {
+        return json_encode([
+            "draw" => $_GET['draw'],
+            "recordsTotal" => 0,
+            "recordsFiltered" => 0,
+            "data" => []
+        ]);
+    }
     $draw    = Request::get('draw', 1);
     $start   = Request::get('start', 0);
     $length  = Request::get('length', 20);
