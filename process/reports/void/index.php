@@ -44,6 +44,15 @@ if(isset($_GET['draw']))
 
     $searchByDate = Request::get('searchByDate', ['startDate' => date('Y-m-d'), 'endDate' => date('Y-m-d')]);
 
+    $columns = [];
+    $search_columns = [];
+    foreach($fields as $key => $field)
+    {
+        $columns[] = is_array($field) ? $key : $field;
+        if(is_array($field) && isset($field['search']) && !$field['search']) continue;
+        $search_columns[] = is_array($field) ? $key : $field;
+    }
+
     $where = "";
     if (isset($filter['type_d'])) {
         $where = $where . " And C.type_id = '$filter[type_d]' ";

@@ -107,7 +107,7 @@ JOIN mst_sizes ON mst_sizes.id = mst_items.size_id
 JOIN mst_colors ON mst_colors.id = mst_items.color_id
 JOIN mst_motifs ON mst_motifs.id = mst_items.motif_id
 JOIN mst_types ON mst_types.id = mst_items.type_id
-JOIN trn_receives ON trn_receives.id = trn_receive_items.receive_id
+JOIN trn_receives ON trn_receives.id = trn_receive_items.receive_id AND trn_receives.status <> 'CANCEL'
 $where";
 
 $db->query = "$query ORDER BY ".$col_order." ".$order[0]['dir'];
