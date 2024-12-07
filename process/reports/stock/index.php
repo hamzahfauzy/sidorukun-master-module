@@ -102,16 +102,16 @@ if(isset($_GET['draw']))
     Result.type_id, Result.size_id, Result.brand_id, Result.motif_id, Result.color_id
 From 
 	(
-	Select F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As SaldoAwal,
-		0 As Terima, 0 As Keluar, 0 As Penyesuaian, 0 As SaldoAkhir, F.type_id, F.size_id, F.brand_id, F.motif_id, F.color_id
+	Select 0 As Jenis, F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As SaldoAwal,
+		0 As Terima, 0 As Keluar, 0 As Penyesuaian, 0 As SaldoAkhir, F.type_id, F.size_id, F.brand_id, F.motif_id, F.color_id, 0 As IdTransaksi 
 	From mst_items F 
 	
 	Union
 	
-	Select Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
+	Select 0 As Jenis, Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
 		SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As SaldoAwal,
 		0 As Terima, 0 As Keluar, 0 As Penyesuaian, 0 As SaldoAkhir,
-        Z.type_id, Z.size_id, Z.brand_id, Z.motif_id, Z.color_id
+        Z.type_id, Z.size_id, Z.brand_id, Z.motif_id, Z.color_id, X.Code As IdTransaksi 
 	From trn_receives X
 		Inner Join trn_receive_items Y On X.id = Y.receive_id 
 		Left Join mst_items Z On Y.item_id = Z.id  
@@ -120,10 +120,10 @@ From
 
 	Union 
 
-	Select C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
+	Select 0 As Jenis, C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
 		SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As SaldoAwal, 
 		0 As Terima, 0 As Keluar, 0 As Penyesuaian, 0 As SaldoAkhir,
-        C.type_id, C.size_id, C.brand_id, C.motif_id, C.color_id
+        C.type_id, C.size_id, C.brand_id, C.motif_id, C.color_id, A.Code As IdTransaksi 
 	From trn_outgoings A
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 		Left Join mst_items C On B.item_id = C.id  
@@ -132,21 +132,21 @@ From
 
 	Union 
 
-	Select O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
+	Select 0 As Jenis, O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
 		SUM(Case When M.qty Is Null Then 0 Else M.qty End) As SaldoAwal, 
 		0 As Terima, 0 As Keluar, 0 As Penyesuaian, 0 As SaldoAkhir,
-        O.type_id, O.size_id, O.brand_id, O.motif_id, O.color_id
+        O.type_id, O.size_id, O.brand_id, O.motif_id, O.color_id, M.Code As IdTransaksi
 	From trn_adjusts M 
 		Inner Join mst_items O On M.item_id = O.id  
 	Where M.adjust_date < '$searchByDate[startDate]' 
 	Group By O.id, O.name, O.unit 
-	
+
 	Union 
 
-	Select Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
+	Select 1 As Jenis, Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
 		0 As SaldoAwal, SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As Terima, 
 		0 As Keluar, 0 As Penyesuaian, 0 As SaldoAkhir,
-        Z.type_id, Z.size_id, Z.brand_id, Z.motif_id, Z.color_id
+        Z.type_id, Z.size_id, Z.brand_id, Z.motif_id, Z.color_id, X.Code As IdTransaksi 
 	From trn_receives X
 		Inner Join trn_receive_items Y On X.id = Y.receive_id 
 		Left Join mst_items Z On Y.item_id = Z.id  
@@ -155,10 +155,10 @@ From
 
 	Union
 
-	Select C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
+	Select 2 As Jenis, C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
 		0 As SaldoAwal, 0 As Terima, SUM(Case When B.qty Is Null Then 0 Else B.qty End) As Keluar, 
 		0 As Penyesuaian, 0 As SaldoAkhir,
-        C.type_id, C.size_id, C.brand_id, C.motif_id, C.color_id
+        C.type_id, C.size_id, C.brand_id, C.motif_id, C.color_id, A.Code As IdTransaksi 
 	From trn_outgoings A
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 		Left Join mst_items C On B.item_id = C.id  
@@ -167,16 +167,15 @@ From
 
 	Union 
 
-	Select O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
+	Select 3 As Jenis, O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
 		0 As SaldoAwal, 0 As Terima, 0 As Keluar, 
 		SUM(Case When M.qty Is Null Then 0 Else M.qty End) As Penyesuaian, 0 As SaldoAkhir,
-        O.type_id, O.size_id, O.brand_id, O.motif_id, O.color_id
+        O.type_id, O.size_id, O.brand_id, O.motif_id, O.color_id, M.Code As IdTransaksi 
 	From trn_adjusts M 
 		Inner Join mst_items O On M.item_id = O.id  
 	Where M.adjust_date >= '$searchByDate[startDate]' And M.adjust_date <= '$searchByDate[endDate]' 
 	Group By O.id, O.name, O.unit 
-	
-) Result 
+	) Result 
 GROUP BY Result.KodeProduk, Result.NamaProduk, Result.Satuan, Result.type_id, Result.size_id, Result.brand_id, Result.motif_id, Result.color_id
 $where";
 
