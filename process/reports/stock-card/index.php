@@ -103,44 +103,44 @@ if(isset($_GET['draw']))
 From 
 (
 	Select 0 As Nomor, 'SALDOAWAL' As Jenis, Concat(Result.KodeProduk, ' - ', Result.NamaProduk) As NoDokumen, 
-		'$searchByDate[startDate]' As TglDokumen, Result.Satuan As Relasi, 
+		'2024-12-08' As TglDokumen, Result.Satuan As Relasi, 
 		SUM(Result.JlhQty) As StokPenerimaan, 0 As StokPengeluaran 
 	From 
 		(
-		Select F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As JlhQty 
-		From mst_items F Where F.id $filter_item 
+		Select F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As JlhQty, 0 As IdTransaksi  
+		From mst_items F Where F.id $filter_item
 		
 		Union
 		
 		Select Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
-			SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As JlhQty 
+			SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As JlhQty, X.Code As IdTransaksi  
 		From trn_receives X
 			Inner Join trn_receive_items Y On X.id = Y.receive_id 
 			Left Join mst_items Z On Y.item_id = Z.id  
 		Where X.receive_date < '$searchByDate[startDate]' And X.status <> 'CANCEL' 
-			And Y.item_id $filter_item
-		Group By Z.id, Z.name, Z.unit 
+			And Y.item_id $filter_item 
+		Group By Z.id, Z.name, Z.unit, X.Code  
 
 		Union 
 
 		Select C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
-			SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As JlhQty
+			SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As JlhQty, A.Code As IdTransaksi 
 		From trn_outgoings A
 			Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 			Left Join mst_items C On B.item_id = C.id  
 		Where A.outgoing_date < '$searchByDate[startDate]' And A.status <> 'CANCEL'
-			And B.item_id $filter_item
-		Group By C.id, C.name, C.unit 
+			And B.item_id $filter_item 
+		Group By C.id, C.name, C.unit, A.Code  
 	
 		Union 
 
 		Select O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
-			SUM(Case When M.qty Is Null Then 0 Else M.qty End) As JlhQty
+			SUM(Case When M.qty Is Null Then 0 Else M.qty End) As JlhQty, M.Code As IdTransaksi 
 		From trn_adjusts M 
 			Inner Join mst_items O On M.item_id = O.id  
 		Where M.adjust_date < '$searchByDate[startDate]' 
-			And M.item_id $filter_item
-		Group By O.id, O.name, O.unit 
+			And M.item_id $filter_item 
+		Group By O.id, O.name, O.unit, M.Code  
 		
 	) Result 
 	
@@ -154,7 +154,7 @@ From
 		Inner Join trn_receive_items B On A.id = B.receive_id 
 		Left Join mst_suppliers C On A.supplier_id = C.id 
 	Where A.receive_date >= '$searchByDate[startDate]' And A.receive_date <= '$searchByDate[endDate]' 
-		And A.status <> 'CANCEL' And B.item_id $filter_item
+		And A.status <> 'CANCEL' And B.item_id $filter_item 
 	Group By A.code, A.receive_date, Concat(C.name, ' - ', C.phone)  
 
 	Union
@@ -164,7 +164,7 @@ From
 	From trn_outgoings A
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id 
 	Where A.outgoing_date >= '$searchByDate[startDate]' And A.outgoing_date <= '$searchByDate[endDate]' 
-		And A.status <> 'CANCEL' And B.item_id $filter_item
+		And A.status <> 'CANCEL' And B.item_id $filter_item 
 	Group By A.code, A.outgoing_date, Concat(A.channel_name, ' - ', A.customer_name)  
 
 	Union 

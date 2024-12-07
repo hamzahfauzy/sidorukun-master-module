@@ -96,44 +96,44 @@ $query = "Select Tampil.Nomor, Tampil.Jenis, Tampil.NoDokumen, Tampil.TglDokumen
 From 
 (
 	Select 0 As Nomor, 'SALDOAWAL' As Jenis, Concat(Result.KodeProduk, ' - ', Result.NamaProduk) As NoDokumen, 
-		'$searchByDate[startDate]' As TglDokumen, Result.Satuan As Relasi, 
+		'2024-12-08' As TglDokumen, Result.Satuan As Relasi, 
 		SUM(Result.JlhQty) As StokPenerimaan, 0 As StokPengeluaran 
 	From 
 		(
-		Select F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As JlhQty 
+		Select F.id As KodeProduk, F.name As NamaProduk, F.unit As Satuan, 0 As JlhQty, 0 As IdTransaksi  
 		From mst_items F Where F.id $filter_item
 		
 		Union
 		
 		Select Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
-			SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As JlhQty 
+			SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As JlhQty, X.Code As IdTransaksi  
 		From trn_receives X
 			Inner Join trn_receive_items Y On X.id = Y.receive_id 
 			Left Join mst_items Z On Y.item_id = Z.id  
 		Where X.receive_date < '$searchByDate[startDate]' And X.status <> 'CANCEL' 
 			And Y.item_id $filter_item 
-		Group By Z.id, Z.name, Z.unit 
+		Group By Z.id, Z.name, Z.unit, X.Code  
 
 		Union 
 
 		Select C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
-			SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As JlhQty
+			SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As JlhQty, A.Code As IdTransaksi 
 		From trn_outgoings A
 			Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 			Left Join mst_items C On B.item_id = C.id  
 		Where A.outgoing_date < '$searchByDate[startDate]' And A.status <> 'CANCEL'
 			And B.item_id $filter_item 
-		Group By C.id, C.name, C.unit 
+		Group By C.id, C.name, C.unit, A.Code  
 	
 		Union 
 
 		Select O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
-			SUM(Case When M.qty Is Null Then 0 Else M.qty End) As JlhQty
+			SUM(Case When M.qty Is Null Then 0 Else M.qty End) As JlhQty, M.Code As IdTransaksi 
 		From trn_adjusts M 
 			Inner Join mst_items O On M.item_id = O.id  
 		Where M.adjust_date < '$searchByDate[startDate]' 
 			And M.item_id $filter_item 
-		Group By O.id, O.name, O.unit 
+		Group By O.id, O.name, O.unit, M.Code  
 		
 	) Result 
 	
@@ -167,7 +167,7 @@ From
 		SUM(Case When COALESCE(A.qty, 0) < 0 Then COALESCE(-A.qty, 0) Else 0 End) As StokPengeluaran
 	From trn_adjusts A 
 	Where A.adjust_date >= '$searchByDate[startDate]' And A.adjust_date <= '$searchByDate[endDate]' 
-		And A.item_id $filter_item  
+		And A.item_id $filter_item 
 	Group By A.code, A.adjust_date, A.description  
 		
 ) Tampil 
