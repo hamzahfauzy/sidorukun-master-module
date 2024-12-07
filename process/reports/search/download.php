@@ -91,35 +91,35 @@ if($filter)
 $query = "Select Result.KodeProduk, Result.NamaProduk, Result.Satuan, SUM(Result.JlhQty) As Stok 
 From 
 (
-	Select Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
-		SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As JlhQty 
+	Select 1 As Jenis, Z.id As KodeProduk, Z.name As NamaProduk, Z.unit As Satuan, 
+		SUM(Case When Y.qty Is Null Then 0 Else Y.qty End) As JlhQty, X.Code As IdTransaksi  
 	From trn_receives X
 		Inner Join trn_receive_items Y On X.id = Y.receive_id 
-		Inner Join mst_items Z On Y.item_id = Z.id  
+		Left Join mst_items Z On Y.item_id = Z.id  
 	Where X.receive_date <= '$searchByDate[endDate]' And X.status <> 'CANCEL' 
-		$clause1
-	Group By Z.id, Z.name, Z.unit 
+    $clause1
+	Group By Z.id, Z.name, Z.unit, X.Code 
 
 	Union 
 
-	Select C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
-		  SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As JlhQty
+	Select 2 As Jenis, C.id As KodeProduk, C.name As NamaProduk, C.unit As Satuan, 
+		  SUM(Case When -B.qty Is Null Then 0 Else -B.qty End) As JlhQty, A.Code As IdTransaksi 
 	From trn_outgoings A
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
-		Inner Join mst_items C On B.item_id = C.id  
+		Left Join mst_items C On B.item_id = C.id  
 	Where A.outgoing_date <= '$searchByDate[endDate]' And A.status <> 'CANCEL'
-		$clause2
-	Group By C.id, C.name, C.unit 
+    $clause2
+	Group By C.id, C.name, C.unit, A.Code  
 
 	Union 
 
-	Select O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
-		  SUM(Case When M.qty Is Null Then 0 Else M.qty End) As JlhQty
+	Select 3 As Jenis, O.id As KodeProduk, O.name As NamaProduk, O.unit As Satuan, 
+		  SUM(Case When M.qty Is Null Then 0 Else M.qty End) As JlhQty, M.Code As IdTransaksi 
 	From trn_adjusts M 
-		Inner Join mst_items O On M.item_id = O.id  
+		Left Join mst_items O On M.item_id = O.id  
 	Where M.adjust_date <= '$searchByDate[endDate]' 
-		$clause3
-	Group By O.id, O.name, O.unit 
+    $clause3
+	Group By O.id, O.name, O.unit, M.Code 
 ) Result 
 $where
 Group By Result.KodeProduk, Result.NamaProduk, Result.Satuan";
