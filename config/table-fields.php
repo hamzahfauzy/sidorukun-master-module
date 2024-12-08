@@ -304,7 +304,8 @@ return [
             'type' => 'date',
             'attr' => [
                 'required' => 'required',
-                'max' => date('Y-m-d')
+                'max' => date('Y-m-d'),
+                'readonly' => 'readonly'
             ]
         ],
         'supplier_name' => [
@@ -390,7 +391,8 @@ return [
             'type' => 'date',
             'attr' => [
                 'required' => 'required',
-                'max' => date('Y-m-d')
+                'max' => date('Y-m-d'),
+                'readonly' => 'readonly'
             ]
         ],
         'customer_name' => [
