@@ -103,7 +103,7 @@ if(isset($_GET['draw']))
 From 
 (
 	Select 0 As Nomor, 'SALDOAWAL' As Jenis, Concat(Result.KodeProduk, ' - ', Result.NamaProduk) As NoDokumen, 
-		'2024-12-08' As TglDokumen, Result.Satuan As Relasi, 
+		'$searchByDate[startDate]' As TglDokumen, Result.Satuan As Relasi, 
 		SUM(Result.JlhQty) As StokPenerimaan, 0 As StokPengeluaran 
 	From 
 		(
