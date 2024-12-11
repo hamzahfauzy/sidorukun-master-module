@@ -122,7 +122,7 @@ From
 		Inner Join trn_receive_items Y On X.id = Y.receive_id 
 		Left Join mst_items Z On Y.item_id = Z.id  
 	Where X.receive_date < '$searchByDate[startDate]' And X.status <> 'CANCEL' 
-	Group By Z.id, Z.name, Z.unit 
+	Group By Z.id, Z.name, Z.unit, Z.type_id, Z.size_id, Z.brand_id, Z.motif_id, Z.color_id, X.Code  
 
 	Union 
 
@@ -134,7 +134,7 @@ From
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 		Left Join mst_items C On B.item_id = C.id  
 	Where A.outgoing_date < '$searchByDate[startDate]' And A.status <> 'CANCEL' 
-	Group By C.id, C.name, C.unit 
+	Group By C.id, C.name, C.unit, C.type_id, C.size_id, C.brand_id, C.motif_id, C.color_id, A.Code
 
 	Union 
 
@@ -145,7 +145,7 @@ From
 	From trn_adjusts M 
 		Inner Join mst_items O On M.item_id = O.id  
 	Where M.adjust_date < '$searchByDate[startDate]' 
-	Group By O.id, O.name, O.unit 
+	Group By O.id, O.name, O.unit, O.type_id, O.size_id, O.brand_id, O.motif_id, O.color_id, M.Code
 
 	Union 
 
@@ -157,7 +157,7 @@ From
 		Inner Join trn_receive_items Y On X.id = Y.receive_id 
 		Left Join mst_items Z On Y.item_id = Z.id  
 	Where X.receive_date >= '$searchByDate[startDate]' And X.receive_date <= '$searchByDate[endDate]' And X.status <> 'CANCEL' 
-	Group By Z.id, Z.name, Z.unit 
+	Group By Z.id, Z.name, Z.unit, Z.type_id, Z.size_id, Z.brand_id, Z.motif_id, Z.color_id, X.Code
 
 	Union
 
@@ -169,7 +169,7 @@ From
 		Inner Join trn_outgoing_items B On A.id = B.outgoing_id  
 		Left Join mst_items C On B.item_id = C.id  
 	Where A.outgoing_date >= '$searchByDate[startDate]' And A.outgoing_date <= '$searchByDate[endDate]' And A.status <> 'CANCEL' 
-	Group By C.id, C.name, C.unit   
+	Group By C.id, C.name, C.unit, C.type_id, C.size_id, C.brand_id, C.motif_id, C.color_id, A.Code 
 
 	Union 
 
@@ -180,7 +180,7 @@ From
 	From trn_adjusts M 
 		Inner Join mst_items O On M.item_id = O.id  
 	Where M.adjust_date >= '$searchByDate[startDate]' And M.adjust_date <= '$searchByDate[endDate]' 
-	Group By O.id, O.name, O.unit 
+	Group By O.id, O.name, O.unit, O.type_id, O.size_id, O.brand_id, O.motif_id, O.color_id, M.Code  
 	) Result 
 GROUP BY Result.KodeProduk, Result.NamaProduk, Result.Satuan, Result.type_id, Result.size_id, Result.brand_id, Result.motif_id, Result.color_id
 $where";
