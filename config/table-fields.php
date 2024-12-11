@@ -299,6 +299,7 @@ return [
             'label' => 'No. Terima',
             'type' => 'text'
         ],
+        '_action_button',
         'receive_date' => [
             'label' => 'Tgl. Terima',
             'type' => 'date',
@@ -386,6 +387,7 @@ return [
             'label' => 'No. Keluar',
             'type' => 'text'
         ],
+        '_action_button',
         'outgoing_date' => [
             'label' => 'Tgl. Keluar',
             'type' => 'date',
@@ -395,10 +397,10 @@ return [
                 'readonly' => 'readonly'
             ]
         ],
-        'customer_name' => [
-            'label' => 'Kustomer',
-            'type' => 'text'
-        ],
+        // 'customer_name' => [
+        //     'label' => 'Kustomer',
+        //     'type' => 'text'
+        // ],
         'channel_name' => [
             'label' => 'Channel',
             'type' => 'text',
